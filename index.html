@@ -6,74 +6,138 @@
     <title>Portfolio</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Mobile-first styles */
+        body {
+            overflow-x: hidden;
+        }
+
         .hidden {
             opacity: 0;
             transform: translateX(-100%);
             transition: all 1s;
         }
-
+        
         .show {
             opacity: 1;
             transform: translateX(0);
         }
-
+        
         .project-card {
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            margin-bottom: 1rem;
         }
-
+        
         .project-card:hover {
             transform: translateY(-5px);
         }
-
+        
         .skill-badge {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             margin: 0.2rem;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
         }
-
+        
         .hero-section {
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            padding: 6rem 1rem 2rem 1rem;
         }
-
+        
         .section-padding {
-            padding: 5rem 0;
+            padding: 3rem 1rem;
         }
-
+        
         .code-block {
             background-color: #1e1e1e;
             color: #d4d4d4;
             padding: 1rem;
             border-radius: 5px;
             font-family: monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        /* Navbar mobile improvements */
+        .navbar {
+            padding: 0.5rem 1rem;
+        }
+
+        .navbar-collapse {
+            background-color: #212529;
+            padding: 1rem;
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                text-align: center;
+                padding-top: 5rem;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
+
+            .section-padding {
+                padding: 2rem 1rem;
+            }
+
+            .card-body {
+                padding: 1rem;
+            }
+
+            .project-card img {
+                height: 200px;
+                object-fit: cover;
+            }
+
+            .code-block {
+                font-size: 0.8rem;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            pre {
+                margin-bottom: 0;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Rajasree.R</a>
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Rajasree</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link py-2" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
+                        <a class="nav-link py-2" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
+                        <a class="nav-link py-2" href="#projects">Projects</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link py-2" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -84,9 +148,10 @@
     <section id="home" class="hero-section d-flex align-items-center">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center hidden">
+                <div class="col-12 text-center hidden">
                     <h1 class="display-4 mb-4">Full Stack Python Developer</h1>
-                    <p class="lead mb-4">I build and optimize full-stack  web applications , handling both frontend and backend for seamless user experience</p>
+                    <p class="lead mb-4">I build and optimize full-stack  web applications , handling both frontend 
+                        and backend for seamless user experience</p>
                     <a href="#projects" class="btn btn-light btn-lg">View My Work</a>
                 </div>
             </div>
@@ -97,38 +162,41 @@
     <section id="about" class="section-padding bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 hidden">
+                <div class="col-12 col-lg-6 mb-4 hidden">
                     <h2 class="mb-4">About Me</h2>
-                    <p class="lead">I'm a passionate Full Stack Developer specializing in Python and web technologies. With expertise in both frontend and backend development, I create efficient and scalable web solutions.</p>
+                    <p class="lead">I'm a passionate Full Stack Developer specializing in Python and 
+                        web technologies. With expertise in both frontend and backend development, 
+                        I create efficient and scalable web solutions.</p>
                     <div class="mt-4">
                         <h4>Technical Skills</h4>
-                        <span class="badge bg-primary skill-badge">Python</span>
-                        <span class="badge bg-success skill-badge">Django</span>
-                        <span class="badge bg-info skill-badge">Flask</span>
-                        <span class="badge bg-warning skill-badge">JavaScript</span>
-                        <span class="badge bg-danger skill-badge">HTML/CSS</span>
-                        <span class="badge bg-secondary skill-badge">Bootstrap</span>
-                        <span class="badge bg-danger skill-badge">PostgreSQL</span>
-                        <span class="badge bg-warning skill-badge">MongoDB</span>
-                        <span class="badge bg-info skill-badge">GitHub</span>
+                        <div class="skill-badges">
+                            <span class="badge bg-primary skill-badge">Python</span>
+                            <span class="badge bg-success skill-badge">Django</span>
+                            <span class="badge bg-info skill-badge">Flask</span>
+                            <span class="badge bg-warning skill-badge">JavaScript</span>
+                            <span class="badge bg-danger skill-badge">HTML5/CSS3</span>
+                            <span class="badge bg-secondary skill-badge">Bootstrap</span>
+                            <span class="badge bg-danger skill-badge">PostgreSQL</span>
+                            <span class="badge bg-warning skill-badge">MongoDB</span>
+                            <span class="badge bg-info skill-badge">GitHub</span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-6 hidden">
+                <div class="col-12 col-lg-6 hidden">
                     <div class="code-block">
                         <pre>
 def greet():
-    skills = ['Python', 'Django', 'Flask',
-              'JavaScript', 'HTML/CSS', PostgrSQL , MongoDB , GitHub]
-<!--    years_exp = 3-->
-
+    skills = ['Python', 'Django', 
+            'Flask', 'JavaScript', 
+            'HTML/CSS', PostgrSQL , MongoDB , GitHub]
+<!--     years_exp = 3 -->
+    
     return {
         'message': 'Hello, World!',
         'role': 'Full Stack Developer',
         'skills': skills
-<!--        'experience': f'{years_exp} years'-->
+<!--         'experience': f'{years_exp} years' -->
     }
-
-# Output: Ready to build amazing things!
                         </pre>
                     </div>
                 </div>
@@ -139,31 +207,16 @@ def greet():
     <!-- Projects Section -->
     <section id="projects" class="section-padding">
         <div class="container">
-            <h2 class="text-center mb-5">Featured Projects</h2>
-            <div class="row g-4">
+            <h2 class="text-center mb-4">Featured Projects</h2>
+            <div class="row">
                 <!-- Project 1 -->
-<!--                <div class="col-lg-4 hidden">-->
-<!--                    <div class="project-card card h-100">-->
-<!--                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 1">-->
-<!--                        <div class="card-body">-->
-<!--                            <h5 class="card-title">E-Commerce Platform</h5>-->
-<!--                            <p class="card-text">A full-featured e-commerce platform built with Django and React.</p>-->
-<!--                            <div class="mt-3">-->
-<!--                                <span class="badge bg-primary">Python</span>-->
-<!--                                <span class="badge bg-success">Django</span>-->
-<!--                                <span class="badge bg-info">React</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-                <!-- Project 2 -->
-                <div class="col-lg-4 hidden">
+                <div class="col-12 col-md-6 col-lg-4 mb-4 hidden">
                     <div class="project-card card h-100">
-                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 2">
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 1">
                         <div class="card-body">
                             <h5 class="card-title">Customized Catering</h5>
-                            <p class="card-text">A Python Django webapp with HTML & CSS,offering personalized catering service</p>
-                            <div class="mt-3">
+                            <p class="card-text">A Python Django webapp with HTML & CSS,offering personalized catering service.</p>
+                            <div class="mt-2">
                                 <span class="badge bg-success">Python</span>
                                 <span class="badge bg-primary">Django</span>
                                 <span class="badge bg-info">HTML/CSS</span>
@@ -171,21 +224,36 @@ def greet():
                         </div>
                     </div>
                 </div>
+                <!-- Project 2 -->
+<!--                 <div class="col-12 col-md-6 col-lg-4 mb-4 hidden">
+                    <div class="project-card card h-100">
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Task Management API</h5>
+                            <p class="card-text">RESTful API built with Flask for task management and scheduling.</p>
+                            <div class="mt-2">
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-danger">Flask</span>
+                                <span class="badge bg-warning">REST API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
                 <!-- Project 3 -->
-<!--                <div class="col-lg-4 hidden">-->
-<!--                    <div class="project-card card h-100">-->
-<!--                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 3">-->
-<!--                        <div class="card-body">-->
-<!--                            <h5 class="card-title">Analytics Dashboard</h5>-->
-<!--                            <p class="card-text">Real-time analytics dashboard with Python backend and Chart.js.</p>-->
-<!--                            <div class="mt-3">-->
-<!--                                <span class="badge bg-primary">Python</span>-->
-<!--                                <span class="badge bg-success">WebSocket</span>-->
-<!--                                <span class="badge bg-info">Chart.js</span>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+<!--                 <div class="col-12 col-md-6 col-lg-4 mb-4 hidden">
+                    <div class="project-card card h-100">
+                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Analytics Dashboard</h5>
+                            <p class="card-text">Real-time analytics dashboard with Python backend and Chart.js.</p>
+                            <div class="mt-2">
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-success">WebSocket</span>
+                                <span class="badge bg-info">Chart.js</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
             </div>
         </div>
     </section>
@@ -194,10 +262,10 @@ def greet():
     <section id="contact" class="section-padding bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 mx-auto text-center hidden">
+                <div class="col-12 text-center hidden">
                     <h2 class="mb-4">Get In Touch</h2>
-<!--                    <p class="lead mb-4">Interested in working together? Let's connect!</p>-->
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <p class="lead mb-4">Interested in working together? Let's connect!</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-center">
                         <a href="rajasree.r016@gmail.com" class="btn btn-primary btn-lg px-4 gap-3">Email Me</a>
                         <a href="https://github.com/rajasree06" class="btn btn-outline-secondary btn-lg px-4">GitHub</a>
                         <a href="https://www.linkedin.com/in/rajasree31" class="btn btn-primary btn-lg px-4 gap-3">Linkedin</a>
@@ -222,6 +290,16 @@ def greet():
 
         // Observe all hidden elements
         document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse.classList.contains('show')) {
+                    navbarCollapse.classList.remove('show');
+                }
+            });
+        });
     </script>
 </body>
 </html>
