@@ -4,200 +4,327 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        /* Mobile-first styles */
-        body {
-            overflow-x: hidden;
+        /* General Styles */
+        html {
+            scroll-behavior: smooth;
         }
 
-        .hidden {
-            opacity: 0;
-            transform: translateX(-100%);
-            transition: all 1s;
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
         }
-        
-        .show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        
-        .project-card {
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-            margin-bottom: 1rem;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .skill-badge {
-            font-size: 0.8rem;
-            margin: 0.2rem;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 0.5rem;
-        }
-        
-        .hero-section {
+
+        .section {
+            padding: 100px 0;
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Section Colors */
+        #home {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 6rem 1rem 2rem 1rem;
-        }
-        
-        .section-padding {
-            padding: 3rem 1rem;
-        }
-        
-        .code-block {
-            background-color: #1e1e1e;
-            color: #d4d4d4;
-            padding: 1rem;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 0.9rem;
-            overflow-x: auto;
-            margin: 1rem 0;
         }
 
-        /* Navbar mobile improvements */
+        #about {
+            background: #2c3e50;
+            color: white;
+        }
+
+        #skills {
+            background: linear-gradient(135deg, #42E695 0%, #3BB2B8 100%);
+            color: white;
+        }
+
+        #projects {
+            background: #e74c3c;
+            color: white;
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+            color: white;
+        }
+
+        /* Navbar Styles */
         .navbar {
-            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+            background-color: transparent !important;
         }
 
-        .navbar-collapse {
-            background-color: #212529;
-            padding: 1rem;
+        .navbar.scrolled {
+            background-color: #343a40 !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        /* Mobile-specific adjustments */
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        /* Home Section */
+        .typing-text {
+            overflow: hidden;
+            border-right: 3px solid white;
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        /* Skills Section */
+        .skill-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Python */
+        .skill-python {
+            background-color: #306998;
+        }
+
+        /* Django */
+        .skill-django {
+            background-color: #092e20;
+        }
+
+        /* SQL */
+        .skill-sql {
+            background-color: #f29111;
+            color: #333;
+        }
+
+        /* HTML */
+        .skill-html {
+            background-color: #e34c26;
+        }
+
+        /* CSS */
+        .skill-css {
+            background-color: #264de4;
+        }
+
+        /* JavaScript */
+        .skill-js {
+            background-color: #f0db4f;
+            color: #333;
+        }
+
+        /* Bootstrap */
+        .skill-bootstrap {
+            background-color: #563d7c;
+        }
+
+        /* Project Section */
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Contact Section */
+        .contact-info i {
+            margin-right: 10px;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s, background 0.3s;
+            z-index: 1000;
+        }
+
+        .scroll-top:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+        }
+
+        /* Animation Keyframes */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: white }
+        }
+
+        /* Media Queries */
         @media (max-width: 768px) {
-            .hero-section {
-                text-align: center;
-                padding-top: 5rem;
-            }
-
-            .hero-section h1 {
-                font-size: 2rem;
-            }
-
-            .hero-section p {
-                font-size: 1rem;
-            }
-
-            .section-padding {
-                padding: 2rem 1rem;
-            }
-
-            .card-body {
-                padding: 1rem;
-            }
-
-            .project-card img {
-                height: 200px;
-                object-fit: cover;
-            }
-
-            .code-block {
-                font-size: 0.8rem;
-                max-width: 100%;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            pre {
-                margin-bottom: 0;
-                white-space: pre-wrap;
-                word-wrap: break-word;
+            .section {
+                padding: 80px 0;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Rajasree</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Rajasree</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link py-2" href="#home">Home</a>
+                        <a class="nav-link" href="#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link py-2" href="#about">About</a>
+                        <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link py-2" href="#projects">Projects</a>
+                        <a class="nav-link" href="#skills">Skills</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link py-2" href="#contact">Contact</a>
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section d-flex align-items-center">
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3">Rajasree</h1>
+            <h2 class="h3 mb-4 typing-text">Full-Stack Developer</h2>
+            <p class="lead mb-5">Building robust web applications with Python and modern web technologies</p>
+            <a href="#about" class="btn btn-outline-light btn-lg px-5">Learn More</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center hidden">
-                    <h1 class="display-4 mb-4">Full Stack Python Developer</h1>
-                    <p class="lead mb-4">I build and optimize full-stack  web applications , handling both frontend 
-                        and backend for seamless user experience</p>
-                    <a href="#projects" class="btn btn-light btn-lg">View My Work</a>
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="display-4 mb-4">About Me</h2>
+                    <p class="lead">I'm a full-stack developer passionate about creating engaging, responsive, and scalable web applications.</p>
+                    <p class="mb-4">With expertise in both frontend and backend technologies, I enjoy solving complex problems and turning ideas into reality. I specialize in Python with Django for backend development and modern HTML, CSS, JavaScript, and Bootstrap for creating beautiful user interfaces.</p>
+                    <p>I'm dedicated to writing clean, maintainable code that follows best practices. Whether it's designing database schemas, implementing business logic, or crafting pixel-perfect interfaces, I love every aspect of the development process.</p>
+                    <div class="mt-4">
+<!--                        <a href="#contact" class="btn btn-light me-3">Get In Touch</a>-->
+                        <a href="https://drive.google.com/file/d/12Z9Jza5Tk4-iagdfKUGp-Em8YjZqOCpA/view?usp=drivesdk" class="btn btn-outline-light">Download Resume</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="section-padding bg-light">
+    <!-- Skills Section -->
+    <section id="skills" class="section">
         <div class="container">
+            <h2 class="display-4 text-center mb-5">Technical Skills</h2>
+
             <div class="row">
-                <div class="col-12 col-lg-6 mb-4 hidden">
-                    <h2 class="mb-4">About Me</h2>
-                    <p class="lead">I'm a passionate Full Stack Developer specializing in Python and 
-                        web technologies. With expertise in both frontend and backend development, 
-                        I create efficient and scalable web solutions.</p>
-                    <div class="mt-4">
-                        <h4>Technical Skills</h4>
-                        <div class="skill-badges">
-                            <span class="badge bg-primary skill-badge">Python</span>
-                            <span class="badge bg-success skill-badge">Django</span>
-                            <span class="badge bg-info skill-badge">Flask</span>
-                            <span class="badge bg-warning skill-badge">JavaScript</span>
-                            <span class="badge bg-danger skill-badge">HTML5/CSS3</span>
-                            <span class="badge bg-secondary skill-badge">Bootstrap</span>
-                            <span class="badge bg-danger skill-badge">PostgreSQL</span>
-                            <span class="badge bg-warning skill-badge">MongoDB</span>
-                            <span class="badge bg-info skill-badge">GitHub</span>
-                        </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-python">
+                        <h3><i class="fab fa-python1 me-2"></i> Python</h3>
+<!--                        <p>Server-side programming and automation</p>-->
                     </div>
                 </div>
-                <div class="col-12 col-lg-6 hidden">
-                    <div class="code-block">
-                        <pre>
-def greet():
-    skills = ['Python', 'Django', 
-            'Flask', 'JavaScript', 
-            'HTML/CSS', PostgrSQL , MongoDB , GitHub]
-<!--     years_exp = 3 -->
-    
-    return {
-        'message': 'Hello, World!',
-        'role': 'Full Stack Developer',
-        'skills': skills
-<!--         'experience': f'{years_exp} years' -->
-    }
-                        </pre>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-django">
+                        <h3><i class="fas fa-server1 me-2"></i> Django</h3>
+<!--                        <p>Web framework for rapid development</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-sql">
+                        <h3><i class="fas fa-database1 me-2"></i> SQL</h3>
+<!--                        <p>Database design and management</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-html">
+                        <h3><i class="fab fa-html51 me-2"></i> HTML</h3>
+<!--                        <p>Structure and content organization</p>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-item skill-css">
+                        <h3><i class="fab fa-css3-alt1 me-2"></i> CSS</h3>
+<!--                        <p>Styling and responsive design</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-item skill-js">
+                        <h3><i class="fab fa-js-square1 me-2"></i> JavaScript</h3>
+<!--                        <p>Client-side interactivity and functions</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="skill-item skill-bootstrap">
+                        <h3><i class="fab fa-bootstrap1 me-2"></i> Bootstrap</h3>
+<!--                        <p>Responsive UI components and layouts</p>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-css">
+                        <h3><i class="fab fa-postgresql me-2"></i> PostgreSQL </h3>
+<!--                        <p>Styling and responsive design</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-js">
+                        <h3><i class="fab fa-mongodb me-2"></i> MongoDB </h3>
+<!--                        <p>Client-side interactivity and functions</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-bootstrap">
+                        <h3><i class="fab fa-github1 me-2"></i> GitHub</h3>
+<!--                        <p>Responsive UI components and layouts</p>-->
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="skill-item skill-html">
+                        <h3><i class="fab fa-html51 me-2"></i> ReactJS </h3>
+<!--                        <p>Structure and content organization</p>-->
                     </div>
                 </div>
             </div>
@@ -205,100 +332,179 @@ def greet():
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="section-padding">
+    <section id="projects" class="section">
         <div class="container">
-            <h2 class="text-center mb-4">Featured Projects</h2>
-            <div class="row">
-                <!-- Project 1 -->
-                <div class="col-12 col-md-6 col-lg-4 mb-4 hidden">
-                    <div class="project-card card h-100">
-                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 1">
+            <h2 class="display-4 text-center mb-5">Recent Projects</h2>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100">
                         <div class="card-body">
-                            <h5 class="card-title">Customized Catering</h5>
-                            <p class="card-text">A Python Django webapp with HTML & CSS,offering personalized catering service.</p>
-                            <div class="mt-2">
-                                <span class="badge bg-success">Python</span>
-                                <span class="badge bg-primary">Django</span>
+                            <h5 class="card-title">Customize Catering</h5>
+                            <p class="card-text">A Python Django webapp with HTML & CSS,offering personalized catering service</p>
+                            <div class="d-flex flex-wrap gap-2 mb-3">
+                                <span class="badge bg-primary">Python</span>
+                                <span class="badge bg-success">Django</span>
                                 <span class="badge bg-info">HTML/CSS</span>
+                                <span class="badge bg-warning text-dark">JavaScript</span>
+                                <span class="badge bg-secondary">SQLite</span>
                             </div>
+<!--                            <a href="#" class="btn btn-outline-light">View Project</a>-->
                         </div>
                     </div>
                 </div>
-                <!-- Project 2 -->
-<!--                 <div class="col-12 col-md-6 col-lg-4 mb-4 hidden">
-                    <div class="project-card card h-100">
-                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Task Management API</h5>
-                            <p class="card-text">RESTful API built with Flask for task management and scheduling.</p>
-                            <div class="mt-2">
-                                <span class="badge bg-primary">Python</span>
-                                <span class="badge bg-danger">Flask</span>
-                                <span class="badge bg-warning">REST API</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- Project 3 -->
-<!--                 <div class="col-12 col-md-6 col-lg-4 mb-4 hidden">
-                    <div class="project-card card h-100">
-                        <img src="/api/placeholder/400/300" class="card-img-top" alt="Project 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Analytics Dashboard</h5>
-                            <p class="card-text">Real-time analytics dashboard with Python backend and Chart.js.</p>
-                            <div class="mt-2">
-                                <span class="badge bg-primary">Python</span>
-                                <span class="badge bg-success">WebSocket</span>
-                                <span class="badge bg-info">Chart.js</span>
-                            </div>
-                        </div>
-                    </div> -->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Task Management System</h5>-->
+<!--                            <p class="card-text">A team collaboration tool with real-time updates, task assignment, deadline tracking, and progress visualization using Django Channels and JavaScript.</p>-->
+<!--                            <div class="d-flex flex-wrap gap-2 mb-3">-->
+<!--                                <span class="badge bg-primary">Python</span>-->
+<!--                                <span class="badge bg-success">Django</span>-->
+<!--                                <span class="badge bg-info">JavaScript</span>-->
+<!--                                <span class="badge bg-danger">CSS</span>-->
+<!--                                <span class="badge bg-secondary">SQL</span>-->
+<!--                            </div>-->
+<!--                            <a href="#" class="btn btn-outline-light">View Project</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col-lg-4 col-md-6">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Blog Platform</h5>-->
+<!--                            <p class="card-text">A content management system for bloggers with rich text editing, categories, tagging, and user comments. Built with Django, Bootstrap, and JavaScript.</p>-->
+<!--                            <div class="d-flex flex-wrap gap-2 mb-3">-->
+<!--                                <span class="badge bg-primary">Python</span>-->
+<!--                                <span class="badge bg-success">Django</span>-->
+<!--                                <span class="badge bg-warning text-dark">Bootstrap</span>-->
+<!--                                <span class="badge bg-danger">HTML</span>-->
+<!--                                <span class="badge bg-secondary">SQL</span>-->
+<!--                            </div>-->
+<!--                            <a href="#" class="btn btn-outline-light">View Project</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section-padding bg-light">
+    <section id="contact" class="section">
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center hidden">
-                    <h2 class="mb-4">Get In Touch</h2>
-                    <p class="lead mb-4">Interested in working together? Let's connect!</p>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-center">
-                        <a href="rajasree.r016@gmail.com" class="btn btn-primary btn-lg px-4 gap-3">Email Me</a>
-                        <a href="https://github.com/rajasree06" class="btn btn-outline-secondary btn-lg px-4">GitHub</a>
-                        <a href="https://www.linkedin.com/in/rajasree31" class="btn btn-primary btn-lg px-4 gap-3">Linkedin</a>
+                <div class="col-lg-6">
+                    <h2 class="display-4 mb-4">Get In Touch</h2>
+<!--                    <p class="lead mb-4">I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>-->
+                    <div class="contact-info mb-4">
+<!--                        <p><i class="fas fa-envelope"></i> john.doe@example.com</p>-->
+<!--                        <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>-->
+<!--                        <p><i class="fas fa-map-marker-alt"></i> San Francisco, CA</p>-->
+                    </div>
+                    <div class="social-links">
+                        <a href="mailto:rajasree.r016@gmail.com" class="btn btn-outline-light me-2"><i class="fab fa-google"></i></a>
+                        <a href="https://github.com/rajasree06" class="btn btn-outline-light me-2"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/rajasree31" class="btn btn-outline-light me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/_rajasree.__" class="btn btn-outline-light me-2"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+<!--                 <div class="col-lg-6 mt-5 mt-lg-0">-->
+<!--                    <div class="card border-0 shadow">-->
+<!--                        <div class="card-body p-4">-->
+<!--                            <h3 class="text-center mb-4">Send Me a Message</h3>-->
+<!--                            <form>-->
+<!--                                <div class="mb-3">-->
+<!--                                    <input type="text" class="form-control" placeholder="Your Name" required>-->
+<!--                                </div>-->
+<!--                                <div class="mb-3">-->
+<!--                                    <input type="email" class="form-control" placeholder="Your Email" required>-->
+<!--                                </div>-->
+<!--                                <div class="mb-3">-->
+<!--                                    <input type="text" class="form-control" placeholder="Subject" required>-->
+<!--                                </div>-->
+<!--                                <div class="mb-3">-->
+<!--                                    <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>-->
+<!--                                </div>-->
+<!--                                <div class="d-grid">-->
+<!--                                    <button type="submit" class="btn btn-primary btn-lg">Send Message</button>-->
+<!--                                </div>-->
+<!--                            </form>-->
+<!--                       </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <!-- Footer -->
+<!--    <footer class="bg-dark text-white text-center py-4">-->
+<!--        <div class="container">-->
+<!--            <p class="mb-0">&copy; 2025 John Doe. All Rights Reserved.</p>-->
+<!--        </div>-->
+<!--    </footer>-->
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Intersection Observer for slide-in animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
-                }
-            });
-        }, {
-            threshold: 0.1
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            // Scroll to top button visibility
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            if (window.scrollY > 500) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
         });
 
-        // Observe all hidden elements
-        document.querySelectorAll('.hidden').forEach((el) => observer.observe(el));
+        // Scroll to top functionality
+        document.querySelector('.scroll-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 
-        // Close mobile menu when clicking a link
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Close mobile menu when clicking on a link
                 const navbarCollapse = document.querySelector('.navbar-collapse');
                 if (navbarCollapse.classList.contains('show')) {
                     navbarCollapse.classList.remove('show');
                 }
             });
+        });
+
+        // Auto-close the mobile navigation when clicking outside
+        document.addEventListener('click', function(event) {
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            const navbar = document.querySelector('.navbar');
+
+            if (navbarCollapse.classList.contains('show') &&
+                !event.target.closest('.navbar')) {
+                navbarCollapse.classList.remove('show');
+            }
         });
     </script>
 </body>
