@@ -71,6 +71,8 @@ section{padding:clamp(3.5rem,8vw,6rem) 0}
 .card .sub{color:var(--muted);font-size:.95rem;margin:0 0 1rem}
 .card ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.45rem}
 .card li{background:var(--bg);border-radius:2rem;padding:.25rem .8rem;font-size:.9rem;font-weight:500}
+.cards .card{cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.cards .card:hover{transform:translateY(-4px)}
 .card.dark{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
 .card.dark .sub{color:rgba(244,242,248,.7)}
 .card.dark li{background:rgba(244,242,248,.12)}
@@ -167,22 +169,22 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem}
         <p>Replace any of these with the skills you want shown.</p>
       </div>
       <div class="cards">
-        <div class="card dark">
+        <div class="card dark" tabindex="0" role="button" aria-pressed="true">
           <h3>Planning & delivery</h3>
           <p class="sub">Getting from idea to done.</p>
           <ul><li>Project planning</li><li>Scheduling</li><li>Scope management</li><li>Agile & Scrum</li><li>Milestone tracking</li></ul>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0" role="button" aria-pressed="false">
           <h3>People & communication</h3>
           <p class="sub">Keeping everyone aligned.</p>
           <ul><li>Stakeholder updates</li><li>Team coordination</li><li>Meeting facilitation</li><li>Vendor follow-up</li><li>Documentation</li></ul>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0" role="button" aria-pressed="false">
           <h3>Control & reporting</h3>
           <p class="sub">Knowing where things stand.</p>
           <ul><li>Risk tracking</li><li>Budget monitoring</li><li>Status reports</li><li>Issue resolution</li><li>Resource planning</li></ul>
         </div>
-        <div class="card">
+        <div class="card" tabindex="0" role="button" aria-pressed="false">
           <h3>Technical background</h3>
           <p class="sub">From my developer years.</p>
           <ul><li>Python</li><li>Django</li><li>SQL</li><li>PostgreSQL</li><li>MongoDB</li><li>JavaScript</li><li>ReactJS</li><li>GitHub</li></ul>
@@ -245,5 +247,20 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem}
 </main>
 
 <footer><div class="wrap">© 2026 Rajasree</div></footer>
+<script>
+// Click (or press Enter/Space on) a skills card to turn it purple
+const cards = document.querySelectorAll('.cards .card');
+function activate(card){
+  cards.forEach(c => { c.classList.remove('dark'); c.setAttribute('aria-pressed','false'); });
+  card.classList.add('dark');
+  card.setAttribute('aria-pressed','true');
+}
+cards.forEach(card => {
+  card.addEventListener('click', () => activate(card));
+  card.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(card); }
+  });
+});
+</script>
 </body>
 </html>
