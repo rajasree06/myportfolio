@@ -3,164 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Rajasree · Full-Stack Developer</title>
-<meta name="description" content="Rajasree is a full-stack developer building web applications with Python, Django and modern web technologies.">
+<title>Rajasree · Project Coordinator</title>
+<meta name="description" content="Rajasree is a project coordinator who keeps teams, timelines and budgets on track.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#EEF1F6; --ink:#14213D; --muted:#566074; --line:#C8D0DF; --accent:#2B4EFF; --on-accent:#fff;
+  --bg:#F4F2F8; --card:#FFFFFF; --ink:#1B1A3A; --muted:#5E5C78; --line:#D9D5E6;
+  --deep:#241B4D; --on-deep:#F4F2F8; --accent:#E4572E; --accent-ink:#B83A16;
   --display:'Bricolage Grotesque','Helvetica Neue',Arial,sans-serif;
-  --body:'Literata',Georgia,'Times New Roman',serif;
-}
-@media (prefers-color-scheme:dark){
-  :root{--bg:#0E1424; --ink:#E8ECF7; --muted:#9AA4BC; --line:#27304A; --accent:#8FA3FF; --on-accent:#0E1424}
+  --body:'Public Sans',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.7}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.05rem;line-height:1.65}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
-.wrap{max-width:62rem;margin:0 auto;padding:0 1.5rem}
- 
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{max-width:70rem;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.08;letter-spacing:-.025em}
+
 /* Header */
-header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:.9rem;padding-bottom:.9rem}
-.logo{font-family:var(--display);font-weight:800;font-size:1.15rem;text-decoration:none}
-nav ul{display:flex;gap:1.4rem;list-style:none;margin:0;padding:0;font-family:var(--display);font-weight:500;font-size:.98rem}
-nav a{text-decoration:none;color:var(--muted);padding:.2rem 0;border-bottom:2px solid transparent}
-nav a:hover{color:var(--ink);border-color:var(--accent)}
- 
-/* Hero: the one bold moment */
-.hero{padding:clamp(4rem,12vw,9rem) 0 clamp(3rem,8vw,6rem)}
-.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(4.2rem,17vw,12.5rem);line-height:.88;letter-spacing:-.045em;margin:0 0 1.5rem;color:var(--accent);overflow-wrap:anywhere}
-.hero .role{font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,3vw,2rem);margin:0 0 1rem;letter-spacing:-.01em}
-.hero p{max-width:34rem;color:var(--muted);margin:0 0 2rem}
+header{position:sticky;top:0;z-index:10;background:rgba(244,242,248,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:.85rem;padding-bottom:.85rem}
+.logo{font-family:var(--display);font-weight:800;font-size:1.3rem;text-decoration:none}
+nav ul{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0;font-weight:500;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.btn{display:inline-block;font-weight:600;text-decoration:none;padding:.8rem 1.5rem;border-radius:2rem;border:2px solid var(--accent);transition:background .2s,color .2s}
+.btn.solid{background:var(--accent);color:#fff}
+.btn.solid:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+.btn.line:hover{background:var(--accent);color:#fff}
+.btn.sm{padding:.5rem 1.1rem;font-size:.9rem}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:3rem;align-items:center;padding:clamp(2.5rem,7vw,5.5rem) 0}
+.hero h1{font-weight:800;font-size:clamp(2.6rem,6.2vw,5rem);margin-bottom:1.3rem}
+.hero p{max-width:32rem;color:var(--muted);font-size:1.15rem;margin:0 0 1.8rem}
 .btns{display:flex;flex-wrap:wrap;gap:.8rem}
-.btn{display:inline-block;font-family:var(--display);font-weight:500;text-decoration:none;padding:.75rem 1.4rem;border:2px solid var(--accent);border-radius:.4rem;transition:background .2s,color .2s}
-.btn.solid{background:var(--accent);color:var(--on-accent)}
-.btn.solid:hover{opacity:.88}
-.btn.line:hover{background:var(--accent);color:var(--on-accent)}
- 
+.portrait{position:relative;aspect-ratio:4/5;border-radius:1.5rem;background:var(--deep);overflow:hidden;max-width:26rem;justify-self:end;width:100%}
+.portrait .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:7rem;color:rgba(244,242,248,.35)}
+.portrait img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:1rem;bottom:1rem;background:var(--card);border-radius:.9rem;padding:.7rem 1rem;font-size:.9rem;line-height:1.35;box-shadow:0 6px 20px rgba(27,26,58,.2)}
+.badge b{display:block;font-family:var(--display);font-size:1.05rem}
+
+/* Tools strip */
+.strip{background:var(--deep);color:var(--on-deep);padding:1.6rem 0}
+.strip .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;align-items:center}
+.strip strong{font-family:var(--display);font-weight:500;opacity:.7;margin-right:.5rem}
+.strip span{font-weight:500}
+
 /* Sections */
-section{padding:clamp(3rem,7vw,5.5rem) 0;border-top:1px solid var(--line)}
-.grid{display:grid;grid-template-columns:minmax(0,12rem) minmax(0,1fr);gap:1rem 3rem}
-h2{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:-.02em;margin:0;line-height:1.2}
-.prose{max-width:38rem}
-.prose p{margin:0 0 1.1rem}
-.prose .lead{font-size:1.25rem;line-height:1.55}
- 
+section{padding:clamp(3.5rem,8vw,6rem) 0}
+.head{max-width:40rem;margin-bottom:2.5rem}
+.head h2{font-weight:800;font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:.8rem}
+.head p{color:var(--muted);margin:0}
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:3rem}
+.about h2{font-weight:800;font-size:clamp(2rem,4.5vw,3.2rem)}
+.about p{margin:0 0 1.1rem;max-width:36rem}
+.about .lead{font-size:1.3rem;line-height:1.5}
+
 /* Skills */
-.skills{margin:0;display:grid;gap:1.4rem}
-.skills div{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);gap:.5rem 1.5rem;padding-bottom:1.4rem;border-bottom:1px solid var(--line)}
-.skills div:last-child{border-bottom:0}
-.skills dt{font-family:var(--display);font-weight:500;color:var(--muted)}
-.skills dd{margin:0;font-size:1.15rem}
- 
-/* Project */
-.project{max-width:38rem}
-.project h3{font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.02em;margin:0 0 .5rem}
-.project p{margin:0 0 1rem}
-.tags{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0;font-family:var(--display);font-weight:500;font-size:.9rem}
-.tags li{border:1px solid var(--line);border-radius:2rem;padding:.2rem .85rem;color:var(--muted)}
- 
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15.5rem,1fr));gap:1.2rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1.2rem;padding:1.6rem}
+.card h3{font-size:1.35rem;margin-bottom:.4rem}
+.card .sub{color:var(--muted);font-size:.95rem;margin:0 0 1rem}
+.card ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.45rem}
+.card li{background:var(--bg);border-radius:2rem;padding:.25rem .8rem;font-size:.9rem;font-weight:500}
+.card.dark{background:var(--deep);color:var(--on-deep);border-color:var(--deep)}
+.card.dark .sub{color:rgba(244,242,248,.7)}
+.card.dark li{background:rgba(244,242,248,.12)}
+
+/* Process (a real sequence, so numbered) */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:1.5rem;list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;border-top:3px solid var(--accent);padding-top:1rem}
+.steps li::before{content:counter(s);font-family:var(--display);font-weight:800;font-size:1.1rem;color:var(--accent-ink)}
+.steps h3{font-size:1.3rem;margin:.2rem 0 .4rem}
+.steps p{margin:0;color:var(--muted);font-size:.98rem}
+
+/* Experience */
+.exp{display:grid;gap:1rem}
+.job{background:var(--card);border:1px solid var(--line);border-radius:1.2rem;padding:1.6rem;display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:.5rem 2rem}
+.job .when{color:var(--muted);font-weight:500}
+.job h3{font-size:1.4rem;margin-bottom:.4rem}
+.job p{margin:0}
+
 /* Contact */
-.links{list-style:none;margin:0;padding:0;display:grid;gap:.2rem;max-width:26rem}
-.links a{display:flex;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--line);text-decoration:none;font-family:var(--display);font-weight:500;font-size:1.15rem}
-.links a:hover{color:var(--accent);border-color:var(--accent)}
-.links span{color:var(--muted);font-family:var(--body);font-size:.95rem}
- 
-footer{padding:2rem 0 3rem;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
- 
-@media (max-width:42rem){
-  .grid{grid-template-columns:1fr}
-  .skills div{grid-template-columns:1fr}
-  nav ul{gap:1rem;font-size:.9rem}
-  .logo{display:none}
-  header .wrap{justify-content:center}
+.contact{background:var(--deep);color:var(--on-deep);border-radius:1.8rem;padding:clamp(2rem,6vw,4rem);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:2.5rem}
+.contact h2{font-weight:800;font-size:clamp(2rem,4.5vw,3.2rem);margin-bottom:.8rem}
+.contact p{margin:0 0 1.5rem;opacity:.8;max-width:30rem}
+.links{list-style:none;margin:0;padding:0}
+.links a{display:flex;justify-content:space-between;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(244,242,248,.2);text-decoration:none;font-weight:600}
+.links a:hover{color:#FFB199}
+.links span{font-weight:400;opacity:.7;overflow-wrap:anywhere;text-align:right}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem}
+
+@media (max-width:48rem){
+  .hero,.about,.contact,.job{grid-template-columns:1fr}
+  .portrait{justify-self:start;max-width:20rem}
+  nav{display:none}
 }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <a class="logo" href="#top">Rajasree</a>
+    <a class="logo" href="#top">Rajasree.</a>
     <nav aria-label="Main">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#experience">Experience</a></li>
       </ul>
     </nav>
+    <a class="btn solid sm" href="#contact">Get in touch</a>
   </div>
 </header>
- 
+
 <main id="top">
   <div class="wrap hero">
-    <h1>Rajasree</h1>
-    <p class="role">Full-stack developer</p>
-    <p>I build web applications with Python and Django, and the interfaces that go with them.</p>
-    <div class="btns">
-      <a class="btn solid" href="#projects">See my work</a>
-      <a class="btn line" href="https://drive.google.com/file/d/12Z9Jza5Tk4-iagdfKUGp-Em8YjZqOCpA/view?usp=drivesdk">Download resume</a>
+    <div>
+      <h1>I keep projects moving from first plan to final delivery.</h1>
+      <!-- EDIT: one-line summary of what you coordinate -->
+      <p>Project coordinator who brings people, timelines and budgets together, so teams know what to do next and stakeholders know where things stand.</p>
+      <div class="btns">
+        <a class="btn solid" href="#skills">See my skills</a>
+        <a class="btn line" href="https://drive.google.com/file/d/12Z9Jza5Tk4-iagdfKUGp-Em8YjZqOCpA/view?usp=drivesdk">Download resume</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <div class="ph" aria-hidden="true">R</div>
+      <!-- Put your photo in the same folder, named photo.jpg -->
+      <img src="photo.jpg" alt="Portrait of Rajasree" onerror="this.remove()">
+      <div class="badge"><b>Rajasree</b>Project Coordinator</div>
     </div>
   </div>
- 
+
+  <div class="strip">
+    <div class="wrap">
+      <strong>Tools I use</strong>
+      <!-- EDIT: replace with the tools you actually use -->
+      <span>Jira</span><span>Asana</span><span>MS Project</span><span>Excel</span><span>Notion</span><span>Slack</span>
+    </div>
+  </div>
+
   <section id="about">
-    <div class="wrap grid">
-      <h2>About</h2>
-      <div class="prose">
-        <p class="lead">I’m a full-stack developer who enjoys building responsive, scalable web applications.</p>
-        <p>I work on both sides of the stack: Python and Django on the backend, and HTML, CSS, JavaScript and Bootstrap on the frontend. I like solving hard problems and turning ideas into working products.</p>
-        <p>I write clean, maintainable code. That covers designing database schemas, implementing business logic and building the interface people actually use.</p>
+    <div class="wrap about">
+      <h2>Clear plans, calm delivery.</h2>
+      <div>
+        <p class="lead">I started in software development, and now I coordinate the people and plans that get projects across the line.</p>
+        <p>My technical background means I understand what engineers need and can explain it plainly to everyone else. I turn goals into schedules, keep every stakeholder informed, and flag risks early so they stay small.</p>
+        <p>I’m organised, communicate directly, and care about work finishing on time and on budget.</p>
       </div>
     </div>
   </section>
- 
-  <section id="skills">
-    <div class="wrap grid">
-      <h2>Skills</h2>
-      <dl class="skills">
-        <div><dt>Backend</dt><dd>Python, Django</dd></div>
-        <div><dt>Databases</dt><dd>SQL, PostgreSQL, MongoDB, SQLite</dd></div>
-        <div><dt>Frontend</dt><dd>HTML, CSS, JavaScript, Bootstrap, ReactJS</dd></div>
-        <div><dt>Tools</dt><dd>GitHub</dd></div>
-      </dl>
+
+  <section id="skills" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <h2>What I bring to a project</h2>
+        <p>Replace any of these with the skills you want shown.</p>
+      </div>
+      <div class="cards">
+        <div class="card dark">
+          <h3>Planning & delivery</h3>
+          <p class="sub">Getting from idea to done.</p>
+          <ul><li>Project planning</li><li>Scheduling</li><li>Scope management</li><li>Agile & Scrum</li><li>Milestone tracking</li></ul>
+        </div>
+        <div class="card">
+          <h3>People & communication</h3>
+          <p class="sub">Keeping everyone aligned.</p>
+          <ul><li>Stakeholder updates</li><li>Team coordination</li><li>Meeting facilitation</li><li>Vendor follow-up</li><li>Documentation</li></ul>
+        </div>
+        <div class="card">
+          <h3>Control & reporting</h3>
+          <p class="sub">Knowing where things stand.</p>
+          <ul><li>Risk tracking</li><li>Budget monitoring</li><li>Status reports</li><li>Issue resolution</li><li>Resource planning</li></ul>
+        </div>
+        <div class="card">
+          <h3>Technical background</h3>
+          <p class="sub">From my developer years.</p>
+          <ul><li>Python</li><li>Django</li><li>SQL</li><li>PostgreSQL</li><li>MongoDB</li><li>JavaScript</li><li>ReactJS</li><li>GitHub</li></ul>
+        </div>
+      </div>
     </div>
   </section>
- 
-  <section id="projects">
-    <div class="wrap grid">
-      <h2>Projects</h2>
-      <article class="project">
-        <h3>Customize Catering</h3>
-        <p>A Django web app that lets customers order personalized catering.</p>
-        <ul class="tags" aria-label="Technologies used">
-          <li>Python</li><li>Django</li><li>HTML/CSS</li><li>JavaScript</li><li>SQLite</li>
+
+  <section id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <h2>How I run a project</h2>
+        <p>The same four steps, whatever the size.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Plan</h3><p>Agree goals, scope, owners and dates before work starts.</p></li>
+        <li><h3>Coordinate</h3><p>Keep tasks, people and vendors moving with clear next steps.</p></li>
+        <li><h3>Track</h3><p>Watch progress, budget and risks, and raise issues early.</p></li>
+        <li><h3>Deliver</h3><p>Close out cleanly, document what was learned, report results.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="experience" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <h2>Experience</h2>
+        <p>Placeholder entries below. Replace them with your real roles.</p>
+      </div>
+      <div class="exp">
+        <article class="job">
+          <div class="when">[Year – Present]</div>
+          <div><h3>Project Coordinator, [Company]</h3><p>[What you coordinate, team size, and one result you’re proud of.]</p></div>
+        </article>
+        <article class="job">
+          <div class="when">[Year – Year]</div>
+          <div><h3>Full-Stack Developer, [Company]</h3><p>Built web applications with Python and Django, including Customize Catering, a personalised catering ordering app.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Have a project that needs coordinating?</h2>
+          <p>Send me a note about what you’re planning, and I’ll get back to you.</p>
+          <a class="btn solid" href="mailto:rajasree.r016@gmail.com">Email me</a>
+        </div>
+        <ul class="links">
+          <li><a href="mailto:rajasree.r016@gmail.com">Email <span>rajasree.r016@gmail.com</span></a></li>
+          <li><a href="https://www.linkedin.com/in/rajasree31">LinkedIn <span>rajasree31</span></a></li>
+          <li><a href="https://github.com/rajasree06">GitHub <span>rajasree06</span></a></li>
+          <li><a href="https://www.instagram.com/_rajasree.__">Instagram <span>_rajasree.__</span></a></li>
         </ul>
-      </article>
-    </div>
-  </section>
- 
-  <section id="contact">
-    <div class="wrap grid">
-      <h2>Contact</h2>
-      <ul class="links">
-        <li><a href="mailto:rajasree.r016@gmail.com">Email <span>rajasree.r016@gmail.com</span></a></li>
-        <li><a href="https://github.com/rajasree06">GitHub <span>rajasree06</span></a></li>
-        <li><a href="https://www.linkedin.com/in/rajasree31">LinkedIn <span>rajasree31</span></a></li>
-        <li><a href="https://www.instagram.com/_rajasree.__">Instagram <span>_rajasree.__</span></a></li>
-      </ul>
+      </div>
     </div>
   </section>
 </main>
- 
-<footer>
-  <div class="wrap">© 2026 Rajasree</div>
-</footer>
+
+<footer><div class="wrap">© 2026 Rajasree</div></footer>
 </body>
 </html>
 
