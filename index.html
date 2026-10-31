@@ -89,6 +89,9 @@ section{padding:clamp(3.5rem,8vw,6rem) 0}
 .job{background:var(--card);border:1px solid var(--line);border-radius:1.2rem;padding:1.6rem;display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr);gap:.5rem 2rem}
 .job .when{color:var(--muted);font-weight:500}
 .job h3{font-size:1.4rem;margin-bottom:.4rem}
+.job .company{font-size:1rem;font-weight:600;color:var(--muted);margin:0 0 .7rem}
+.job .company a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line)}
+.job .company a:hover{color:var(--accent-ink);text-decoration-color:var(--accent)}
 .job p{margin:0}
 
 /* Contact */
@@ -145,15 +148,25 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem}
     </div>
   </div>
 
-  <div class="strip">
+  <!--<div class="strip">
     <div class="wrap">
-      <strong>Tools I use</strong>
-      <!-- EDIT: replace with the tools you actually use -->
-            <!-- <span>Jira</span><span>Asana</span><span>MS Project</span><span>Excel</span> -->
+     <strong>Tools I use</strong>
+      EDIT: replace with the tools you actually use 
+            <span>Jira</span><span>Asana</span><span>MS Project</span><span>Excel</span> 
              <span>Notion</span><span>Slack</span><span>Google Sheets</span><span>Google Docs</span><span>Canvas</span><span>Meta Business Suite</span><span>AI tools</span>
-
+    </div>
+  </div>-->
+  <div class="strip">
+  <div class="wrap">
+    <strong>Tools I use</strong>
+    <div class="marquee">
+      <div class="track">
+        <span>Notion</span><span>Slack</span><span>Google Sheets</span><span>Google Docs</span><span>Canva</span><span>Meta Business Suite</span><span>AI tools</span>
+        <span aria-hidden="true">Notion</span><span aria-hidden="true">Slack</span><span aria-hidden="true">Google Sheets</span><span aria-hidden="true">Google Docs</span><span aria-hidden="true">Canva</span><span aria-hidden="true">Meta Business Suite</span><span aria-hidden="true">AI tools</span>
+      </div>
     </div>
   </div>
+</div>
 
   <section id="about">
     <div class="wrap about">
@@ -185,11 +198,11 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem}
                     <!-- <p class="sub">Keeping everyone aligned.</p>-->
 
           
-          <ul><li>Content Workflow Coordination</li><li>Design Team Coordination</li><li>Creative Review</li><li>- Publishing Support</li></ul>
+          <ul><li>Content Workflow Coordination</li><li>Design Team Coordination</li><li>Creative Review</li><li>Publishing Support</li></ul>
         </div>
         <div class="card" tabindex="0" role="button" aria-pressed="false">
           <h3>Client Communication</h3>
-          <p class="sub">Knowing where things stand.</p>
+          <!--<p class="sub">Knowing where things stand.</p>-->
           <ul><li>Requirement Gathering</li><li>Client Feedback Handling</li></ul>
         </div>
         <div class="card" tabindex="0" role="button" aria-pressed="false">
@@ -231,12 +244,17 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.92rem}
       </div>
       <div class="exp">
         <article class="job">
-          <div class="when">[January 2026 – Present]</div>
-          <div><h3>Project Coordinator, Digital Department</h3><p>[I coordinate social media content workflows from the initial client requirement to final delivery and publishing. My role involves working closely with clients, designers and the digital marketing team to keep tasks organised and moving on schedule. I gather requirements, communicate feedback, review creative work and coordinate changes to ensure the final content meets the client's expectations.]</p></div>
+          <div class="when">January 2026 – Present</div>
+          <div><h3>Project Coordinator</h3>
+            <!--<p class="company">Digital Department</p>-->
+            <p class="company"><a href="https://digitaldepartmentindia.com" target="_blank" rel="noopener">Digital Department</a></p>
+            <p>I coordinate social media content workflows from the initial client requirement to final delivery and publishing. My role involves working closely with clients, designers and the digital marketing team to keep tasks organised and moving on schedule. I gather requirements, communicate feedback, review creative work and coordinate changes to ensure the final content meets the client's expectations.</p></div>
         </article>
         <article class="job">
-          <div class="when">[April 2025 – July 2025]</div>
-          <div><h3>Project Associate Intern, Eduport Academy Pvt. Ltd.</h3><p>During my internship, I supported daily project activities by following up on tasks, maintaining trackers and organising project information. This experience helped me develop a practical understanding of task coordination, progress tracking and working with different team members.</p></div>
+          <div class="when">April 2025 – July 2025</div>
+          <div><h3>Project Associate Intern</h3>
+            <p class="company"><a href="https://eduport.app" target="_blank" rel="noopener">Eduport Academy Pvt. Ltd.</a></p>
+          <p>During my internship, I supported daily project activities by following up on tasks, maintaining trackers and organising project information. This experience helped me develop a practical understanding of task coordination, progress tracking and working with different team members.</p></div>
         </article>
       </div>
     </div>
